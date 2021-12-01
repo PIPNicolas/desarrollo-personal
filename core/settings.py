@@ -118,7 +118,7 @@ USE_TZ = True
 
 
 STATIC_URL = '/static/'
-
+STATIC_ROOT = '/home/nicolasdevpy/desarrollo-personal/static'
 MEDIA_URL = '/media/'
 
 # Default primary key field type
