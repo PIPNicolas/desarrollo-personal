@@ -31,10 +31,22 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
+    'django.contrib.humanize',
+
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+
+
+    "crispy_forms",
+    "crispy_tailwind",
+
     'tailwind',
     'theme',
     'core',
-    'blog'
+    'blog',
+    'perfil',
 ]
 TAILWIND_APP_NAME = 'theme'
 INTERNAL_IPS = [
@@ -42,6 +54,47 @@ INTERNAL_IPS = [
 ]
 
 NPM_BIN_PATH = r"C:\Program Files\nodejs\npm.cmd"
+
+
+
+
+AUTHENTICATION_BACKENDS = [
+    
+    # Needed to login by username in Django admin, regardless of `allauth`
+    'django.contrib.auth.backends.ModelBackend',
+
+    # `allauth` specific authentication methods, such as login by e-mail
+    'allauth.account.auth_backends.AuthenticationBackend',
+    
+]
+
+SITE_ID = 1
+
+
+CRISPY_ALLOWED_TEMPLATE_PACKS = "tailwind"
+
+CRISPY_TEMPLATE_PACK = "tailwind"
+
+
+# ================ Cambio de email ALLAUTH ==================== #
+ACCOUNT_ALLOW_REGISTRATION = env.bool("DJANGO_ACCOUNT_ALLOW_REGISTRATION", True)
+ACCOUNT_AUTHENTICATION_METHOD = "email"
+ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_EMAIL_UNIQUE = True
+#AUTH_USER_MODEL=".User"
+ACCOUNT_LOGOUT_ON_GET = True
+ACCOUNT_EMAIL_VERIFICATION = "mandatory"
+ACCOUNT_LOGIN_ATTEMPTS_LIMIT = 3
+ACCOUNT_LOGIN_ATTEMPTS_TIMEOUT =300
+LOGIN_REDIRECT_URL = "/"
+LOGIN_URL = "account_login"
+
+
+
+
+
+
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -118,17 +171,10 @@ USE_TZ = True
 
 
 STATIC_URL = '/static/'
-
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static')
+]
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 MEDIA_URL = '/media/'
-
-# Default primary key field type
-# https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
-
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
-# default static files settings for PythonAnywhere.
-# see https://help.pythonanywhere.com/pages/DjangoStaticFiles for more info
-"""MEDIA_ROOT = '/home/nicolasgonzalez24/Prueba/media'
-
-STATIC_ROOT = '/home/nicolasgonzalez24/Prueba/static'
-STATIC_URL = '/static/'"""

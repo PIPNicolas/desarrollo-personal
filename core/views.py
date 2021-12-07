@@ -7,4 +7,4 @@ class HomeView(View):
         context={
 
         }
-        return render(request, 'pages/index.html', context)
+        return render(request, 'perfil/index.html', context)
