@@ -1,0 +1,69 @@
+{% extends "account/base.html" %}
+{% load static %}
+{% load i18n %}
+{% load tailwind_filters %}
+{% load account socialaccount %}
+
+{% block head_title %}{% trans "Sign In" %}{% endblock %}
+
+{% block content %}
+
+
+
+
+
+<div class="my-8">
+  <div role="banner">
+    <div class="text-center">
+      <a href="" aria-label="Homepage">
+        
+        
+      </a>
+    </div>
+  </div>
+</div>
+
+
+<div>
+  <br/>
+  <main>
+    <div id="login">
+      <form class="login" method="POST" action="{% url 'account_login' %}">
+        {% csrf_token %}
+        <div>
+          <h1 class="text-2xl font-light text-center">Sign in to Blog</h1>
+        </div>
+
+        <div class="text-sm border rounded-sm bg-white p-4 w-72 mx-auto mt-5">
+         {{ form|crispy }}
+         
+          
+      <input class="block w-full bg-black text-white font-semibold py-2 rounded-sm mt-6 border-green-700 hover:border-green-900 cursor-pointer" type="submit" name="commit" value="Sign in" tabindex="3" />
+          </div>
+      </form>
+     
+    
+      <p class="text-sm border rounded-sm p-4 w-72 mx-auto mt-4 text-center">
+        New to Blog?
+        <a href="{% url 'account_signup' %}">Create an account</a>.
+        
+      </p>
+      <p class="text-sm border rounded-sm p-4 w-72 mx-auto mt-4 text-center">
+        
+        <a class="button secondaryAction" href="{% url 'account_reset_password' %}">{% trans "Forgot Password?" %}</a>
+        
+      </p>
+
+      
+    </div>
+
+  </main>
+</div>
+
+
+{% endblock %}
+
+
+
+
+
